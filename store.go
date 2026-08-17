@@ -77,7 +77,7 @@ func (s *Store) Release(now time.Time, key, holder string, token uint64) error {
 	if !found || current.Expired(now) {
 		return ErrNotFound
 	}
-	if current.Holder != holder || current.Token != token {
+	if current.Holder != holder {
 		return ErrTokenMismatch
 	}
 	delete(s.leases, key)
@@ -97,6 +97,6 @@ func (s *Store) Snapshot(now time.Time) []Lease {
 		}
 		result = append(result, current)
 	}
-	sort.Slice(result, func(i, j int) bool { return result[i].Key > result[j].Key })
+	sort.Slice(result, func(i, j int) bool { return result[i].Key < result[j].Key })
 	return result
 }
