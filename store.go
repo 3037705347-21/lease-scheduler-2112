@@ -77,7 +77,7 @@ func (s *Store) Release(now time.Time, key, holder string, token uint64) error {
 	if !found || current.Expired(now) {
 		return ErrNotFound
 	}
-	if current.Holder != holder {
+	if current.Holder != holder || current.Token != token {
 		return ErrTokenMismatch
 	}
 	delete(s.leases, key)
