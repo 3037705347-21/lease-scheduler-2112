@@ -63,7 +63,7 @@ func (s *Store) Renew(now time.Time, request RenewRequest) (Lease, error) {
 		return Lease{}, ErrTokenMismatch
 	}
 
-	current.ExpiresAt = current.ExpiresAt.Add(request.Duration)
+	current.ExpiresAt = now.Add(request.Duration)
 	s.leases[current.Key] = current
 	return current, nil
 }
