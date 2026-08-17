@@ -28,7 +28,7 @@ func (s *Store) Acquire(now time.Time, request AcquireRequest) (Lease, error) {
 	defer s.mu.Unlock()
 
 	current, found := s.leases[request.Key]
-	if found && (current.Active(now) || current.ExpiresAt.Equal(now)) {
+	if found && current.Active(now) {
 		if current.Holder == request.Holder {
 			return current, nil
 		}
