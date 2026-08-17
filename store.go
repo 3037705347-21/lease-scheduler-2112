@@ -97,6 +97,6 @@ func (s *Store) Snapshot(now time.Time) []Lease {
 		}
 		result = append(result, current)
 	}
-	sort.Slice(result, func(i, j int) bool { return result[i].Key > result[j].Key })
+	sort.Slice(result, func(i, j int) bool { return result[i].Key < result[j].Key })
 	return result
 }
