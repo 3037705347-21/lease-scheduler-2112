@@ -10,9 +10,6 @@ type Scheduler struct {
 
 // NewScheduler constructs a scheduler. A nil clock uses the process wall clock.
 func NewScheduler(store *Store, clock Clock) *Scheduler {
-	if store == nil {
-		store = NewStore()
-	}
 	if clock == nil {
 		clock = WallClock{}
 	}

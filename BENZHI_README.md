@@ -1,4 +1,4 @@
-# lease-scheduler-2112 Docker 交付说明
+# lease-scheduler__005 Docker 交付说明
 
 ## 项目概览
 - Lease Scheduler is a Go library for coordinating short-lived ownership of named
@@ -14,8 +14,8 @@ go test ./...
 ## Docker 构建
 
 ```bash
-./build_benzhi_docker.sh lease-scheduler-2112-benzhi linux/amd64
-docker run --rm -it lease-scheduler-2112-benzhi bash
+./build_benzhi_docker.sh lease-scheduler__005-benzhi linux/amd64
+docker run --rm -it lease-scheduler__005-benzhi bash
 ```
 
 ## 环境
