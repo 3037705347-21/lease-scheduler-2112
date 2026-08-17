@@ -63,7 +63,9 @@ func (s *Store) Renew(now time.Time, request RenewRequest) (Lease, error) {
 		return Lease{}, ErrTokenMismatch
 	}
 
-	current.ExpiresAt = current.ExpiresAt.Add(request.Duration)
+	// Extend from the renewal moment, not the prior expiry, so a renew that
+	// happens mid-lease resets the deadline to now + duration.
+	current.ExpiresAt = now.Add(request.Duration)
 	s.leases[current.Key] = current
 	return current, nil
 }
