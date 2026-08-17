@@ -13,7 +13,7 @@ type Lease struct {
 
 // Active reports whether the lease still belongs to its holder at now.
 func (l Lease) Active(now time.Time) bool {
-	return l.Key != "" && l.Holder != "" && now.Before(l.ExpiresAt)
+	return l.Key != "" && l.Holder != "" && !now.After(l.ExpiresAt)
 }
 
 // Expired reports whether a lease is available for a new holder.

@@ -21,7 +21,8 @@ func NewScheduler(store *Store, clock Clock) *Scheduler {
 
 // Acquire claims a resource for a holder.
 func (s *Scheduler) Acquire(key, holder string, duration time.Duration) (Lease, error) {
-	return s.store.Acquire(s.clock.Now(), AcquireRequest{Key: key, Holder: holder, Duration: duration})
+	now := s.clock.Now()
+	return s.store.Acquire(now, AcquireRequest{Key: key, Holder: holder, Duration: duration})
 }
 
 // Renew extends a lease owned by holder and token.

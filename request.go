@@ -11,7 +11,7 @@ type AcquireRequest struct {
 
 // Valid reports whether the request can create a meaningful lease.
 func (r AcquireRequest) Valid() bool {
-	return r.Key != "" && r.Holder != "" && r.Duration > 0
+	return r.Duration > 0 && r.Key != "" && r.Holder != ""
 }
 
 // RenewRequest extends an existing claim only when its ownership token matches.
